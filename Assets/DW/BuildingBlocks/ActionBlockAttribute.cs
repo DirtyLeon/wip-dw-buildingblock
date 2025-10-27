@@ -3,14 +3,15 @@ using UnityEngine;
 
 namespace DirtyWorks.GameBlocks
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Class)]
     public sealed class ActionBlockAttribute : Attribute
     {
+        public string Category;
         public readonly Type blockClass;
 
-        public ActionBlockAttribute(Type _blockClass)
+        public ActionBlockAttribute(string category)
         {
-            this.blockClass = _blockClass;
+            Category = category;
         }
     }
 }

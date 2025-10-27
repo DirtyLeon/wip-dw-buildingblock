@@ -526,15 +526,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionBlocks:
   - rid: 4614166034008244557
+  - rid: 7990894894191738981
+  - rid: 7990894894191738952
+  ExecuteOnEnable: 0
+  ExecuteOnStart: 0
   references:
     version: 2
     RefIds:
     - rid: 4614166034008244557
       type: {class: Log, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
-        name: Debug.Log
         enabled: 1
-        message: 
+        message: Hello.
+    - rid: 7990894894191738952
+      type: {class: Log, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
+      data:
+        enabled: 1
+        message: I have an apple.
+    - rid: 7990894894191738981
+      type: {class: Pause, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
+      data:
+        enabled: 1
+        PauseTime: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -9,5 +9,36 @@ namespace DirtyWorks.GameBlocks
     {
         [SerializeReference]
         public List<ActionBlock> actionBlocks;
+
+        public bool ExecuteOnEnable = false;
+        public bool ExecuteOnStart = false;
+
+        private void OnEnable()
+        {
+            if (ExecuteOnEnable)
+                ExecuteList();
+        }
+
+        private void Start()
+        {
+            if (ExecuteOnEnable)
+                return;
+
+            if(ExecuteOnStart)
+                ExecuteList();
+        }
+
+        public void ExecuteList()
+        {
+            StartCoroutine(ExecuteListCoroutine());
+        }
+
+        IEnumerator ExecuteListCoroutine()
+        {
+            foreach (var block in actionBlocks)
+            {
+                yield return block.RunCoroutine();
+            }
+        }
     }
 }
