@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DirtyWorks.GameBlocks
 {
-    [ActionBlock("")]
+    [ActionBlock("Delay")]
     public class Pause : ActionBlock
     {
         public float PauseTime = 0f;

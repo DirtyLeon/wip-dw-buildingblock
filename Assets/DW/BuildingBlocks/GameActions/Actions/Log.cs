@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace DirtyWorks.GameBlocks
 {
-    [ActionBlock("Message")]
+    [ActionBlock("Debug")]
     public class Log : ActionBlock, IGameBlock
     {
         public string message = "";
+
+        public void Run() => DoAction();
 
         public void DoAction()
         {
             Debug.Log(message);
         }
-
-        public void Run() => DoAction();
 
         public override IEnumerator RunCoroutine()
         {
