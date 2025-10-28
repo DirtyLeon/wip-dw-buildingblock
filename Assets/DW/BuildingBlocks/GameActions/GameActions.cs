@@ -37,7 +37,8 @@ namespace DirtyWorks.GameBlocks
         {
             foreach (var block in actionBlocks)
             {
-                yield return block.RunCoroutine();
+                if(block.enabled)
+                    yield return block.RunCoroutine();
             }
         }
     }

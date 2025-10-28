@@ -9,6 +9,7 @@ namespace DirtyWorks.GameBlocks
     //[CreateAssetMenu(fileName = "ActionBlock", menuName = "Scriptable Objects/ActionBlock")]
     public abstract class ActionBlock
     {
+        [HideInInspector]
         public bool enabled = true;
 
         public bool Enabled
