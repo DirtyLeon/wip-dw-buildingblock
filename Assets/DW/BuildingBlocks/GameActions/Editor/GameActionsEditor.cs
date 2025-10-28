@@ -47,7 +47,7 @@ namespace DirtyWorks.GameBlocks
             SerializedProperty element = _list.serializedProperty.GetArrayElementAtIndex(index);
             float propertyHeight = EditorGUI.GetPropertyHeight(element, true);
 
-            // add extra padding
+            // Add extra padding.
             return propertyHeight + 10f;
             //return EditorGUI.GetPropertyHeight(element) + EditorGUIUtility.standardVerticalSpacing;
         }
@@ -71,56 +71,46 @@ namespace DirtyWorks.GameBlocks
             var label = obj != null ? obj.GetType().Name : "<Null>";
 
             // Calculate positions
-            float padding = 4f;
+            //float padding = 4f;
             float buttonWidth = 50f;
-            float totalButtonWidth = buttonWidth * 2 + padding;
             Rect fieldRect = new Rect(rect.x, rect.y, rect.width - buttonWidth - 4f, rect.height);
-            Rect runButtonRect = new Rect(rect.x + rect.width - 80, rect.y + 10f, buttonWidth, EditorGUIUtility.singleLineHeight);
-            Rect removeButtonRect = new Rect(rect.x + rect.width - 20, rect.y + 10, buttonWidth, EditorGUIUtility.singleLineHeight);
+            Rect runButtonRect = new Rect(rect.x + rect.width - 70, rect.y, buttonWidth, EditorGUIUtility.singleLineHeight);
+            Rect removeButtonRect = new Rect(rect.x + rect.width - 15, rect.y, buttonWidth, EditorGUIUtility.singleLineHeight);
             // Draw the property field
             EditorGUI.indentLevel++;
             EditorGUI.PropertyField(fieldRect, element, new GUIContent(label, EditorGUIUtility.IconContent("PlayButton").image), includeChildren: true);
             EditorGUI.indentLevel--;
 
-            /*
-            if ((obj is IGameBlock))
+            using (new EditorGUI.DisabledScope(obj == null))
             {
-                // Draw "Run" button
-                using (new EditorGUI.DisabledScope(obj == null))
+                if(obj is IGameBlock)
                 {
                     if (GUI.Button(runButtonRect, "Run"))
                     {
-                        if (obj is IGameBlock block)
+                        if (Application.isPlaying)
                         {
-                            if (Application.isPlaying)
-                                block.Run();
-                            else
-                                Debug.LogWarning("You can only run blocks in Play Mode.");
-                        }
-                        else
-                        {
-                            Debug.LogWarning($"{label} does not implement IGameBlock.");
+                            var block = obj as IGameBlock;
+                            block?.Run();
                         }
                     }
                 }
-            }*/
-
-            if (GUI.Button(runButtonRect, "Run"))
-            {
-                var block = obj as IGameBlock;
-                block?.Run();
+                
             }
 
-            if (GUI.Button(removeButtonRect, EditorGUIUtility.IconContent("TreeEditor.Trash"), GUIStyle.none))
+            using (new EditorGUI.DisabledScope(obj == null))
             {
-                // Delay the removal until after GUI events to avoid modification errors
-                EditorApplication.delayCall += () =>
+                if (GUI.Button(removeButtonRect, EditorGUIUtility.IconContent("TreeEditor.Trash"), GUIStyle.none))
                 {
-                    _list.serializedProperty.DeleteArrayElementAtIndex(index);
-                    _list.serializedProperty.serializedObject.ApplyModifiedProperties();
-                };
+                    // Delay the removal until after GUI events to avoid modification errors
+                    EditorApplication.delayCall += () =>
+                    {
+                        _list.serializedProperty.DeleteArrayElementAtIndex(index);
+                        _list.serializedProperty.serializedObject.ApplyModifiedProperties();
+                    };
+                }
             }
         }
+
 
         public void OnAddDropdownCallback(Rect buttonRect, ReorderableList list)
         {

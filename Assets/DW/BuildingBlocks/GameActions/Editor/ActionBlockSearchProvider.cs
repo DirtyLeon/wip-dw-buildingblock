@@ -50,11 +50,15 @@ public class ActionBlockSearchProvider : ScriptableObject, ISearchWindowProvider
 
         foreach (var kvp in categorized)
         {
-            tree.Add(new SearchTreeGroupEntry(new GUIContent(kvp.Key)) { level = 1 });
+            tree.Add(new SearchTreeGroupEntry(new GUIContent(kvp.Key, EditorGUIUtility.IconContent("Folder Icon").image)) { level = 1 });
 
             foreach (var type in kvp.Value)
             {
-                tree.Add(new SearchTreeEntry(new GUIContent(type.Name))
+                var imgKey = "cs Script Icon";
+                if (kvp.Key == "Debug")
+                    imgKey = "console.infoicon";
+
+                tree.Add(new SearchTreeEntry(new GUIContent(type.Name, EditorGUIUtility.IconContent(imgKey).image))
                 {
                     level = 2,
                     userData = type
@@ -65,6 +69,7 @@ public class ActionBlockSearchProvider : ScriptableObject, ISearchWindowProvider
         return tree;
     }
 
+    
     public bool OnSelectEntry(SearchTreeEntry entry, SearchWindowContext context)
     {
         if (_targetProperty == null || entry.userData is not Type type)
@@ -79,4 +84,5 @@ public class ActionBlockSearchProvider : ScriptableObject, ISearchWindowProvider
 
         return true;
     }
+    
 }

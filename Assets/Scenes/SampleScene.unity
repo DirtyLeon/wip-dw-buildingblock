@@ -473,8 +473,9 @@ MonoBehaviour:
   actionBlocks:
   - rid: 4614166034008244557
   - rid: 7990894894191738981
-  - rid: 7990894894191738952
-  ExecuteOnEnable: 0
+  - rid: 4614166058738909271
+  - rid: 4614166058738909291
+  ExecuteOnEnable: 1
   ExecuteOnStart: 0
   references:
     version: 2
@@ -484,11 +485,30 @@ MonoBehaviour:
       data:
         enabled: 1
         message: Hello.
-    - rid: 7990894894191738952
+    - rid: 4614166058738909271
       type: {class: Log, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
         enabled: 1
-        message: I have an apple.
+        message: 12444
+    - rid: 4614166058738909291
+      type: {class: CallUnityEvent, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
+      data:
+        enabled: 1
+        triggerUnityEvents:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1698305477}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
     - rid: 7990894894191738981
       type: {class: Pause, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:

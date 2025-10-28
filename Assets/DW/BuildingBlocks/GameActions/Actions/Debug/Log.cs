@@ -9,16 +9,16 @@ namespace DirtyWorks.GameBlocks
     {
         public string message = "";
 
-        public void Run() => DoAction();
-
-        public void DoAction()
+        private void DoAction()
         {
             Debug.Log(message);
         }
 
+        public void Run() => DoAction();
+
         public override IEnumerator RunCoroutine()
         {
-            DoAction();
+            Run();
             yield break;
         }
     }
