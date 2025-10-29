@@ -30,7 +30,8 @@ namespace DirtyWorks.GameBlocks
 
         public void ExecuteList()
         {
-            StartCoroutine(ExecuteListCoroutine());
+            if(Application.isPlaying)
+                StartCoroutine(ExecuteListCoroutine());
         }
 
         IEnumerator ExecuteListCoroutine()

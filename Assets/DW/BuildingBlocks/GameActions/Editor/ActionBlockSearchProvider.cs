@@ -53,14 +53,16 @@ namespace DirtyWorks.GameBlocks
             foreach (var kvp in categorized)
             {
                 BlockDictionary.AttributeIcon.TryGetValue((kvp.Key), out var tryGetAttr);
-                var icon = EditorGUIUtility.IconContent(tryGetAttr ?? "Folder Icon").image;
+                var attrIconKey = (tryGetAttr) ?? "Folder Icon";
+                var icon = EditorGUIUtility.IconContent(attrIconKey).image;
                 tree.Add(new SearchTreeGroupEntry(new GUIContent(kvp.Key, icon)) { level = 1 });
 
                 foreach (var type in kvp.Value)
                 {
                     // Test: block icons
-                    BlockDictionary.TypeIcon.TryGetValue((type.Name), out var imgKey);
-                    var typeIcon = EditorGUIUtility.IconContent(imgKey ?? "cs Script Icon").image;
+                    BlockDictionary.TypeIcon.TryGetValue((type.Name), out var tryGetType);
+                    var typeIconKey = (tryGetType) ?? attrIconKey;
+                    var typeIcon = EditorGUIUtility.IconContent(typeIconKey).image;
 
                     BlockDictionary.BlockName.TryGetValue(type.Name, out var tryGetName);
                     var typeName = tryGetName ?? type.Name;

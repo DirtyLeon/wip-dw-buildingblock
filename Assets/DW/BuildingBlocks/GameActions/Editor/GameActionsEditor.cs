@@ -81,12 +81,12 @@ namespace DirtyWorks.GameBlocks
             Rect removeButtonRect = new Rect(rect.x + rect.width - 15, rect.y, buttonWidth, EditorGUIUtility.singleLineHeight);
 
             // Rect for checkbox
-            Rect checkboxRect = new Rect(rect.x + 4, rect.y, 27f, EditorGUIUtility.singleLineHeight);
+            Rect checkboxRect = new Rect(rect.x + 10, rect.y, 27f, EditorGUIUtility.singleLineHeight);
 
             // Draw label.
             BlockDictionary.BlockName.TryGetValue(obj?.GetType().Name, out var tryGetName);
             var label = tryGetName ?? obj?.GetType().Name;
-            var labelRect = new Rect(rect.x + 36, rect.y, rect.width - 18 - buttonWidth * 2 - 4f, rect.height);
+            var labelRect = new Rect(rect.x + 36+10, rect.y, rect.width - 18 - buttonWidth * 2, rect.height);
 
             // Draw icon.
             BlockDictionary.AttributeIcon.TryGetValue((obj.GetType().GetCustomAttribute<ActionBlockAttribute>().Category), out var tryGetAttr);
@@ -98,14 +98,15 @@ namespace DirtyWorks.GameBlocks
             EditorGUI.indentLevel++;
             
             SerializedProperty enabledProp = element.FindPropertyRelative("enabled");
+            GUIContent checkboxContent = new GUIContent("", "Enable/Disable this action");
             if (enabledProp != null)
             {
-                enabledProp.boolValue = EditorGUI.Toggle(checkboxRect, enabledProp.boolValue);
+                enabledProp.boolValue = EditorGUI.Toggle(checkboxRect, checkboxContent, enabledProp.boolValue);
             }
             else
             {
                 // If no property exists, draw an independent checkbox (e.g., for quick control)
-                bool temp = EditorGUI.Toggle(checkboxRect, false);
+                bool temp = EditorGUI.Toggle(checkboxRect, checkboxContent, false);
             }
 
             EditorGUI.PropertyField(labelRect, element, new GUIContent(label), includeChildren: true);

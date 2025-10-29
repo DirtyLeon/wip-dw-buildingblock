@@ -480,6 +480,8 @@ MonoBehaviour:
   - rid: 7990894917011898456
   - rid: 7990894917011898478
   - rid: 7990894917011898477
+  - rid: 4614166080160530547
+  - rid: 4614166080160530549
   ExecuteOnEnable: 0
   ExecuteOnStart: 0
   references:
@@ -488,17 +490,31 @@ MonoBehaviour:
     - rid: 4614166034008244557
       type: {class: Log, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
-        enabled: 0
+        enabled: 1
         message: Hello.
     - rid: 4614166058738909271
       type: {class: Log, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
         enabled: 0
         message: You are seeing me!
+    - rid: 4614166080160530547
+      type: {class: LoadSceneAction, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
+      data:
+        enabled: 1
+        sceneByIndex: 1
+        sceneIndex: 0
+        sceneName: 
+    - rid: 4614166080160530549
+      type: {class: LoadAdditiveSceneAction, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
+      data:
+        enabled: 1
+        sceneByIndex: 1
+        sceneIndex: 0
+        sceneName: 
     - rid: 7990894917011898452
       type: {class: PauseForSeconds, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
-        enabled: 0
+        enabled: 1
         PauseTime: 1
     - rid: 7990894917011898455
       type: {class: Log, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
