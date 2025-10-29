@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace DirtyWorks.GameBlocks
 {
-    public class BaseSceneAction : ActionBlock
+    public abstract class BaseSceneAction : ActionBlock
     {
         public bool sceneByIndex = false;
         public int sceneIndex = 0;
