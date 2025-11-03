@@ -481,7 +481,6 @@ MonoBehaviour:
   - rid: 7990894917011898478
   - rid: 7990894917011898477
   - rid: 4614166080160530547
-  - rid: 4614166080160530549
   ExecuteOnEnable: 0
   ExecuteOnStart: 0
   references:
@@ -501,14 +500,8 @@ MonoBehaviour:
       type: {class: LoadSceneAction, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
         enabled: 1
-        sceneByIndex: 1
-        sceneIndex: 0
-        sceneName: 
-    - rid: 4614166080160530549
-      type: {class: LoadAdditiveSceneAction, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
-      data:
-        enabled: 1
-        sceneByIndex: 1
+        additiveScene: 0
+        sceneByIndex: 0
         sceneIndex: 0
         sceneName: 
     - rid: 7990894917011898452

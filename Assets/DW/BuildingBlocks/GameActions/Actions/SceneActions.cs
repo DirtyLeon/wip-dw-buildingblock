@@ -5,6 +5,7 @@ namespace DirtyWorks.GameBlocks
 {
     public abstract class BaseSceneAction : ActionBlock
     {
+        public bool additiveScene = false;
         public bool sceneByIndex = false;
         public int sceneIndex = 0;
         public string sceneName = "";
@@ -28,10 +29,11 @@ namespace DirtyWorks.GameBlocks
     {
         public override void DoAction()
         {
+            var mode = (additiveScene) ? LoadSceneMode.Additive : LoadSceneMode.Single;
             if (sceneByIndex)
-                SceneManager.LoadScene(sceneIndex);
+                SceneManager.LoadScene(sceneIndex, mode);
             else
-                SceneManager.LoadScene(sceneName);
+                SceneManager.LoadScene(sceneName, mode);
         }
 
         public override IEnumerator RunCoroutine()
@@ -42,14 +44,15 @@ namespace DirtyWorks.GameBlocks
     }
 
     [ActionBlock("SceneManager")]
-    public class LoadAdditiveSceneAction : BaseSceneAction, IGameBlock
+    public class LoadSceneAsyncAction : BaseSceneAction, IGameBlock
     {
         public override void DoAction()
         {
+            var mode = (additiveScene) ? LoadSceneMode.Additive : LoadSceneMode.Single;
             if (sceneByIndex)
-                SceneManager.LoadScene(sceneIndex, LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(sceneIndex, mode);
             else
-                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(sceneName, mode);
         }
 
         public override IEnumerator RunCoroutine()

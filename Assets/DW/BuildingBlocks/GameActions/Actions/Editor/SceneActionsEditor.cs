@@ -22,6 +22,7 @@ namespace DirtyWorks.GameBlocks
             EditorGUI.indentLevel++;
             EditorGUI.BeginProperty(position, label, property);
 
+            var loadSceneModeProp = property.FindPropertyRelative("additiveScene");
             var sceneByIndexProp = property.FindPropertyRelative("sceneByIndex");
             var sceneIndexProp = property.FindPropertyRelative("sceneIndex");
             var sceneNameProp = property.FindPropertyRelative("sceneName");
@@ -40,6 +41,9 @@ namespace DirtyWorks.GameBlocks
 
             // Draw callByIndex
             EditorGUI.PropertyField(rect, sceneByIndexProp);
+            rect.y += lineHeight;
+
+            EditorGUI.PropertyField(rect, loadSceneModeProp);
             rect.y += lineHeight;
 
             // Draw either objectIndex or objectName
@@ -64,7 +68,7 @@ namespace DirtyWorks.GameBlocks
             if (property.isExpanded)
             {
                 // 1 for callByIndex, 1 for either index/name
-                height += lineHeight * 2;
+                height += lineHeight * 3;
             }
 
             return height;

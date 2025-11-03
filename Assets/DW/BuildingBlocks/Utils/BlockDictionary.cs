@@ -10,7 +10,8 @@ namespace DirtyWorks.GameBlocks.Utils
             {"PauseForFrames", "Wait for Frames" },
             {"PauseForFixedUpdate", "Wait for FixedUpdate" },
             {"Log", "Console Log" },
-            {"CallUnityEvent", "Invoke UnityEvent" }
+            {"CallUnityEvent", "Invoke UnityEvent" },
+            {"LoadSceneAction", "Load Scene" }
         };
 
         public static readonly Dictionary<string, string> TypeIcon = new Dictionary<string, string>()
