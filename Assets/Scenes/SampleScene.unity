@@ -480,7 +480,7 @@ MonoBehaviour:
   - rid: 7990894917011898456
   - rid: 7990894917011898478
   - rid: 7990894917011898477
-  - rid: 4614166080160530547
+  - rid: 6912819894354706503
   ExecuteOnEnable: 0
   ExecuteOnStart: 0
   references:
@@ -496,7 +496,7 @@ MonoBehaviour:
       data:
         enabled: 0
         message: You are seeing me!
-    - rid: 4614166080160530547
+    - rid: 6912819894354706503
       type: {class: LoadSceneAction, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
         enabled: 1
