@@ -426,6 +426,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1506069425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1506069426}
+  - component: {fileID: 1506069427}
+  m_Layer: 0
+  m_Name: GameVariables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1506069426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506069425}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1506069427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506069425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767c60a7636cb2649856b7cbda941cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetAsGlobalStatic: 0
+  variableBlocks:
+  - rid: 6912820049608966305
+  - rid: 6912820049608966314
+  - rid: 6912820049608966315
+  variableGUID: 8c232c6e-246b-447d-9b68-5d5539cb65a0
+  displayGUID: 8c232c6e-246b-447d-9b68-5d5539cb65a0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6912820049608966305
+      type: {class: VariableBool, ns: DirtyWorks.GameBlocks.Variables, asm: Assembly-CSharp}
+      data:
+        variableName: canRun
+        value: 0
+    - rid: 6912820049608966314
+      type: {class: VariableInt, ns: DirtyWorks.GameBlocks.Variables, asm: Assembly-CSharp}
+      data:
+        variableName: currentCount
+        value: 1
+    - rid: 6912820049608966315
+      type: {class: VariableVector3, ns: DirtyWorks.GameBlocks.Variables, asm: Assembly-CSharp}
+      data:
+        variableName: desiredPosition
+        value: {x: 0, y: 0, z: 0}
 --- !u!1 &1698305477
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +570,7 @@ MonoBehaviour:
       data:
         enabled: 1
         additiveScene: 0
-        sceneByIndex: 0
+        loadByIndex: 0
         sceneIndex: 0
         sceneName: 
     - rid: 7990894917011898452
@@ -560,3 +629,4 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1698305478}
+  - {fileID: 1506069426}
