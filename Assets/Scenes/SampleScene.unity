@@ -1386,7 +1386,8 @@ MonoBehaviour:
   - rid: 6912820071057588565
   - rid: 6912820071057588578
   - rid: 6912820071057588619
-  - rid: 6912820071057588635
+  - rid: 6981104150775595127
+  - rid: 6981104150775595128
   ExecuteOnEnable: 0
   ExecuteOnStart: 0
   references:
@@ -1404,7 +1405,7 @@ MonoBehaviour:
       type: {class: PauseForSeconds, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
         enabled: 1
-        PauseTime: 0
+        PauseTime: 1
     - rid: 6912820071057588565
       type: {class: CallUnityEvent, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
@@ -1424,34 +1425,41 @@ MonoBehaviour:
       type: {class: SetObjectVariable, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
         enabled: 1
-        beModObject: {fileID: 330585543}
-        targetComponentType: Camera
-        targetFieldName: 
-        newValueBool: 0
+        beModObject: {fileID: 1663797583}
+        targetComponentType: TestSubject
+        targetFieldName: position
+        newValueBool: 1
+        newValueInt: 0
+        newValueFloat: 17
+        newValueString: 
+        newValueVector2: {x: 0, y: 0}
+        newValueVector3: {x: 22, y: 44, z: 78}
+    - rid: 6981104150775595127
+      type: {class: SetGameVariable, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
+      data:
+        enabled: 1
+        gameVariables: {fileID: 1506069427}
+        variableName: 
+        targetVariableIndex: 0
+        newValueBool: 1
         newValueInt: 0
         newValueFloat: 0
         newValueString: 
         newValueVector2: {x: 0, y: 0}
         newValueVector3: {x: 0, y: 0, z: 0}
-    - rid: 6912820071057588635
+    - rid: 6981104150775595128
       type: {class: SetGameVariable, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
         enabled: 1
         gameVariables: {fileID: 1506069427}
-        targetVariable:
-          rid: 6912820071057588654
         variableName: 
+        targetVariableIndex: 1
         newValueBool: 0
-        newValueInt: 20
+        newValueInt: 47
         newValueFloat: 0
         newValueString: 
         newValueVector2: {x: 0, y: 0}
         newValueVector3: {x: 0, y: 0, z: 0}
-    - rid: 6912820071057588654
-      type: {class: VariableInt, ns: DirtyWorks.GameBlocks.Variables, asm: Assembly-CSharp}
-      data:
-        variableName: currentCount
-        value: 1
 --- !u!4 &1896191160
 Transform:
   m_ObjectHideFlags: 0

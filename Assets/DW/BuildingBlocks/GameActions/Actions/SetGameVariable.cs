@@ -11,9 +11,10 @@ namespace DirtyWorks.GameBlocks
     {
         public GameVariables gameVariables;
 
-        [SerializeReference]
+        //[SerializeReference]
         public VariableBlock targetVariable;
         public string variableName;
+        public int targetVariableIndex = -1;
 
         public bool newValueBool;
         public int newValueInt;
@@ -24,12 +25,10 @@ namespace DirtyWorks.GameBlocks
 
         public void SetVariable()
         {
-            if(targetVariable == null)
-            {
-                targetVariable = gameVariables.GetVariable(variableName) as VariableBlock;
-            }
+            // Get targetVariable from variableBlocks list first.
+            targetVariable = gameVariables.variableBlocks[targetVariableIndex];
 
-            if(targetVariable == null)
+            if (targetVariable == null)
             {
                 Debug.LogError("Variable not assigned.");
                 return;

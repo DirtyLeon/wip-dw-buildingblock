@@ -4,6 +4,7 @@ using DirtyWorks.GameBlocks;
 using DirtyWorks.GameBlocks.Variables;
 using UnityEngine;
 using UnityEditor;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace DirtyWorks.GameBlocks.Editors
 {
@@ -12,6 +13,7 @@ namespace DirtyWorks.GameBlocks.Editors
     {
         private const int expandedHeight = 4;
         //private int targetVariableIndex = -1;
+        //private int currentIndex = -1;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -29,7 +31,14 @@ namespace DirtyWorks.GameBlocks.Editors
             EditorGUI.BeginProperty(position, label, property);
 
             var gameVariablesProp = property.FindPropertyRelative("gameVariables");
-            var targetVariableProp = property.FindPropertyRelative("targetVariable");
+            //var targetVariableProp = property.FindPropertyRelative("targetVariable");
+            var targetVariableIndexProp = property.FindPropertyRelative("targetVariableIndex");
+            var newValueBoolProp = property.FindPropertyRelative("newValueBool");
+            var newValueIntProp = property.FindPropertyRelative("newValueInt");
+            var newValueFloatProp = property.FindPropertyRelative("newValueFloat");
+            var newValueStringProp = property.FindPropertyRelative("newValueString");
+            var newValueVector2Prop = property.FindPropertyRelative("newValueVector2");
+            var newValueVector3Prop = property.FindPropertyRelative("newValueVector3");
 
             float lineHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
             Rect line = new Rect(
@@ -51,31 +60,42 @@ namespace DirtyWorks.GameBlocks.Editors
                 if(variables!=null && variables.variableBlocks!=null && variables.variableBlocks.Count > 0)
                 {
                     string[] options = new string[variables.variableBlocks.Count];
-                    int currentIndex = -1;
 
                     for (int i = 0; i < variables.variableBlocks.Count; i++)
                     {
                         var block = variables.variableBlocks[i];
                         string name = block != null ? (string.IsNullOrEmpty(block.variableName) ? $"Element {i}" : block.variableName) : $"Element {i}";
                         options[i] = name;
-
-                        // Find currently selected one
-                        if (targetVariableProp.managedReferenceValue == (object)block)
-                            currentIndex = i;
                     }
 
-                    //var currentTarget = targetVariableProp.objectReferenceValue as GameVariables;
+                    int currentIndex = targetVariableIndexProp.intValue;
+                    currentIndex = Mathf.Clamp(currentIndex, -1, variables.variableBlocks.Count - 1);
+
                     int newIndex = EditorGUI.Popup(line, "Target Variable", currentIndex, options);
                     line.y += lineHeight;
 
-                    if(newIndex >=0 && newIndex < variables.variableBlocks.Count)
+                    if (newIndex != targetVariableIndexProp.intValue)
                     {
-                        var newBlock = variables.variableBlocks[newIndex];
-                        if(targetVariableProp.managedReferenceValue!= newBlock)
-                        {
-                            targetVariableProp.managedReferenceValue = newBlock;
-                            property.serializedObject.ApplyModifiedProperties();
-                        }
+                        targetVariableIndexProp.intValue = newIndex;
+                        property.serializedObject.ApplyModifiedProperties();
+                    }
+
+                    // Draw input field.
+                    if (currentIndex != -1)
+                    {
+                        var fieldType = variables.variableBlocks[currentIndex].GetValue().GetType();
+                        GUIContent inputLabel = new GUIContent("Set value (" + fieldType.Name + ")");
+                        EditorGUILayout.Space();
+                        var inputProp =
+                            (fieldType == typeof(bool)) ? newValueBoolProp :
+                            (fieldType == typeof(int)) ? newValueIntProp :
+                            (fieldType == typeof(float)) ? newValueFloatProp :
+                            (fieldType == typeof(string)) ? newValueStringProp :
+                            (fieldType == typeof(Vector2)) ? newValueVector2Prop :
+                            (fieldType == typeof(Vector3)) ? newValueVector3Prop :
+                            newValueStringProp;
+
+                        EditorGUI.PropertyField(line, inputProp, inputLabel);
                     }
                 }
                 else
@@ -90,7 +110,6 @@ namespace DirtyWorks.GameBlocks.Editors
                 line.y += lineHeight;
             }
 
-            // End
             EditorGUI.EndProperty();
             EditorGUI.indentLevel--;
         }
@@ -114,12 +133,7 @@ namespace DirtyWorks.GameBlocks.Editors
 
 
 
-            var newValueBoolProp = property.FindPropertyRelative("newValueBool");
-            var newValueIntProp = property.FindPropertyRelative("newValueInt");
-            var newValueFloatProp = property.FindPropertyRelative("newValueFloat");
-            var newValueStringProp = property.FindPropertyRelative("newValueString");
-            var newValueVector2Prop = property.FindPropertyRelative("newValueVector2");
-            var newValueVector3Prop = property.FindPropertyRelative("newValueVector3");
+            
             
 
 */
