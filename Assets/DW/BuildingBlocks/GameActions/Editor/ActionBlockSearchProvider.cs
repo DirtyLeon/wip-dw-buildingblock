@@ -42,8 +42,10 @@ namespace DirtyWorks.GameBlocks
 
                 string category = "Uncategorized";
                 var attr = type.GetCustomAttribute<ActionBlockAttribute>();
-                if (attr != null)
-                    category = attr.Category;
+                if (attr == null)
+                    continue;
+                
+                category = attr.Category;
 
                 if (!categorized.ContainsKey(category))
                     categorized[category] = new List<Type>();

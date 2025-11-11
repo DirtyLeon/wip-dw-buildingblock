@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace DirtyWorks.GameBlocks
 {
-    [ActionBlock("Events")]
+    [ActionBlock("UnityEvents")]
     public class CallUnityEvent : ActionBlock, IGameBlock
     {
         public UnityEvent triggerUnityEvents;
