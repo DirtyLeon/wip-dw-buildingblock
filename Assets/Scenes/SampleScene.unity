@@ -1383,15 +1383,15 @@ MonoBehaviour:
   actionBlocks:
   - rid: 6912820071057588539
   - rid: 6912820071057588516
-  - rid: -2
   - rid: 6912820071057588565
+  - rid: 6912820071057588578
+  - rid: 6912820071057588619
+  - rid: 6912820071057588635
   ExecuteOnEnable: 0
   ExecuteOnStart: 0
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 6912820071057588516
       type: {class: LoadSceneAction, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
@@ -1412,6 +1412,46 @@ MonoBehaviour:
         triggerUnityEvents:
           m_PersistentCalls:
             m_Calls: []
+    - rid: 6912820071057588578
+      type: {class: LoadSceneAction, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
+      data:
+        enabled: 0
+        additiveScene: 0
+        loadByIndex: 0
+        sceneIndex: 0
+        sceneName: 
+    - rid: 6912820071057588619
+      type: {class: SetObjectVariable, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
+      data:
+        enabled: 1
+        beModObject: {fileID: 330585543}
+        targetComponentType: Camera
+        targetFieldName: 
+        newValueBool: 0
+        newValueInt: 0
+        newValueFloat: 0
+        newValueString: 
+        newValueVector2: {x: 0, y: 0}
+        newValueVector3: {x: 0, y: 0, z: 0}
+    - rid: 6912820071057588635
+      type: {class: SetGameVariable, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
+      data:
+        enabled: 1
+        gameVariables: {fileID: 1506069427}
+        targetVariable:
+          rid: 6912820071057588654
+        variableName: 
+        newValueBool: 0
+        newValueInt: 20
+        newValueFloat: 0
+        newValueString: 
+        newValueVector2: {x: 0, y: 0}
+        newValueVector3: {x: 0, y: 0, z: 0}
+    - rid: 6912820071057588654
+      type: {class: VariableInt, ns: DirtyWorks.GameBlocks.Variables, asm: Assembly-CSharp}
+      data:
+        variableName: currentCount
+        value: 1
 --- !u!4 &1896191160
 Transform:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using UnityEditor;
 namespace DirtyWorks.GameBlocks.Editors
 {
     [CustomPropertyDrawer(typeof(SetObjectVariable))]
-    public class SetObjectValueEditor : PropertyDrawer
+    public class SetObjectVariableEditor : PropertyDrawer
     {
         private int _componentIndex = -1;
         private int _fieldIndex = -1;

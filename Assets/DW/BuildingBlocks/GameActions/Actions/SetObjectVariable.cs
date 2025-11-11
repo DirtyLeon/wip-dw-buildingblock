@@ -19,7 +19,7 @@ namespace DirtyWorks.GameBlocks
         public bool newValueBool;
         public int newValueInt;
         public float newValueFloat;
-        public string newValueString; // we'll parse this based on field type
+        public string newValueString;
         public Vector2 newValueVector2;
         public Vector3 newValueVector3;
 

@@ -58,6 +58,20 @@ namespace DirtyWorks.GameBlocks.Variables
                 return variable;
         }
 
+        public void SetVariable(string variableName, object value)
+        {
+            var variable = variableBlocks.Find(x => x.variableName == variableName);
+            if (variable == null)
+            {
+                Debug.LogError("No variable found: " + variableName);
+                return;
+            }
+            else
+            {
+                variable.SetValue(value);
+            }
+        }
+
         [ExecuteInEditMode]
         public void GenerateNewGUID()
         {
