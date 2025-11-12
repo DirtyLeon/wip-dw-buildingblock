@@ -6,7 +6,7 @@ using System.Reflection;
 namespace DirtyWorks.GameBlocks
 {
     [ActionBlock("SetValue")]
-    public class SetObjectVariable : ActionBlock, IGameBlock
+    public class SetObjectVariable : SetVariableBase
     {
         //[Header("Target Object (GameObject or Component)")]
         public UnityEngine.Object beModObject;
@@ -15,19 +15,11 @@ namespace DirtyWorks.GameBlocks
         public string targetComponentType;
         public string targetFieldName;
 
-        //[Header("Value To Set")]
-        public bool newValueBool;
-        public int newValueInt;
-        public float newValueFloat;
-        public string newValueString;
-        public Vector2 newValueVector2;
-        public Vector3 newValueVector3;
-
 
         /// <summary>
         /// Call this in-game to apply the new value to the selected field.
         /// </summary>
-        public void ChangeValue()
+        public void SetValue()
         {
             if (!Application.isPlaying)
                 return;
@@ -64,7 +56,7 @@ namespace DirtyWorks.GameBlocks
 
             // 2️. Find the field
             Type compType = component.GetType();
-            FieldInfo field = compType.GetField(targetFieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo field = compType.GetField(targetFieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             if (field == null)
             {
@@ -73,41 +65,24 @@ namespace DirtyWorks.GameBlocks
             }
 
             // 3️. Parse and set value based on field type
-            //object parsedValue = ParseValue(field.FieldType, newValueString);
             object parsedValue = ParseValue(field.FieldType);
 
             field.SetValue(component, parsedValue);
-            //Debug.Log($"[InspectorValueChanger] Changed {compType.Name}.{targetFieldName} to {parsedValue}");
         }
         private void DoAction()
         {
-            ChangeValue();
+            SetValue();
         }
 
-        public void Run() => DoAction();
+        public override void Run()
+        {
+            DoAction();
+        }
 
         public override IEnumerator RunCoroutine()
         {
             Run();
             yield break;
-        }
-
-        private object ParseValue(Type type)
-        {
-            if (type == typeof(bool))
-                return newValueBool;
-            else if (type == typeof(int))
-                return newValueInt;
-            else if (type == typeof(float))
-                return newValueFloat;
-            else if (type == typeof(string))
-                return newValueString;
-            else if (type == typeof(Vector2))
-                return newValueVector2;
-            else if (type == typeof(Vector3))
-                return newValueVector3;
-
-            return null;
         }
     }
 }

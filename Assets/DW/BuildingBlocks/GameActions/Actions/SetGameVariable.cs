@@ -7,7 +7,7 @@ namespace DirtyWorks.GameBlocks
 {
     [Serializable]
     [ActionBlock("SetValue")]
-    public class SetGameVariable : ActionBlock, IGameBlock
+    public class SetGameVariable : SetVariableBase
     {
         public GameVariables gameVariables;
 
@@ -15,13 +15,6 @@ namespace DirtyWorks.GameBlocks
         public VariableBlock targetVariable;
         public string variableName;
         public int targetVariableIndex = -1;
-
-        public bool newValueBool;
-        public int newValueInt;
-        public float newValueFloat;
-        public string newValueString;
-        public Vector2 newValueVector2;
-        public Vector3 newValueVector3;
 
         public void SetVariable()
         {
@@ -35,20 +28,12 @@ namespace DirtyWorks.GameBlocks
             }
 
             Type valueType = targetVariable.GetValue().GetType();
-
-            object useValue =
-                (valueType == typeof(bool)) ? newValueBool :
-                (valueType == typeof(int)) ? newValueInt :
-                (valueType == typeof(float)) ? newValueFloat :
-                (valueType == typeof(string)) ? newValueString :
-                (valueType == typeof(Vector2)) ? newValueVector2 :
-                (valueType == typeof(Vector3)) ? newValueVector3 :
-                newValueString;
+            object useValue = ParseValue(valueType);
 
             targetVariable.SetValue(useValue);
         }
 
-        public void Run()
+        public override void Run()
         {
             SetVariable();
         }

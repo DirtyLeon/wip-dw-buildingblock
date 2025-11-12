@@ -893,6 +893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetAsGlobalStatic: 0
   variableBlocks:
+  - rid: 6912820071057588718
   - rid: 6912820049608966305
   - rid: 6912820049608966314
   - rid: 6912820049608966315
@@ -916,6 +917,11 @@ MonoBehaviour:
       data:
         variableName: desiredPosition
         value: {x: 0, y: 0, z: 0}
+    - rid: 6912820071057588718
+      type: {class: VariableString, ns: DirtyWorks.GameBlocks.Variables, asm: Assembly-CSharp}
+      data:
+        variableName: name
+        value: Leeee
 --- !u!1 &1616425010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,6 +1177,7 @@ MonoBehaviour:
   playerName: Mike
   health: 20
   gold: 10
+  fame: 20
   isWalking: 0
   animState: {x: 0, y: 0}
   position: {x: 0, y: 0, z: 0}
@@ -1385,9 +1392,8 @@ MonoBehaviour:
   - rid: 6912820071057588516
   - rid: 6912820071057588565
   - rid: 6912820071057588578
-  - rid: 6912820071057588619
-  - rid: 6981104150775595127
-  - rid: 6981104150775595128
+  - rid: 6912820071057588733
+  - rid: 6912820071057588734
   ExecuteOnEnable: 0
   ExecuteOnStart: 0
   references:
@@ -1421,45 +1427,32 @@ MonoBehaviour:
         loadByIndex: 0
         sceneIndex: 0
         sceneName: 
-    - rid: 6912820071057588619
+    - rid: 6912820071057588733
+      type: {class: SetGameVariable, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
+      data:
+        enabled: 1
+        newValueBool: 0
+        newValueInt: 0
+        newValueFloat: 0
+        newValueString: 
+        newValueVector2: {x: 0, y: 0}
+        newValueVector3: {x: 0, y: 0, z: 0}
+        gameVariables: {fileID: 1506069427}
+        variableName: 
+        targetVariableIndex: 3
+    - rid: 6912820071057588734
       type: {class: SetObjectVariable, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
       data:
         enabled: 1
+        newValueBool: 1
+        newValueInt: 0
+        newValueFloat: 0
+        newValueString: 
+        newValueVector2: {x: 0, y: 0}
+        newValueVector3: {x: 0, y: 0, z: 0}
         beModObject: {fileID: 1663797583}
         targetComponentType: TestSubject
-        targetFieldName: position
-        newValueBool: 1
-        newValueInt: 0
-        newValueFloat: 17
-        newValueString: 
-        newValueVector2: {x: 0, y: 0}
-        newValueVector3: {x: 22, y: 44, z: 78}
-    - rid: 6981104150775595127
-      type: {class: SetGameVariable, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
-      data:
-        enabled: 1
-        gameVariables: {fileID: 1506069427}
-        variableName: 
-        targetVariableIndex: 0
-        newValueBool: 1
-        newValueInt: 0
-        newValueFloat: 0
-        newValueString: 
-        newValueVector2: {x: 0, y: 0}
-        newValueVector3: {x: 0, y: 0, z: 0}
-    - rid: 6981104150775595128
-      type: {class: SetGameVariable, ns: DirtyWorks.GameBlocks, asm: Assembly-CSharp}
-      data:
-        enabled: 1
-        gameVariables: {fileID: 1506069427}
-        variableName: 
-        targetVariableIndex: 1
-        newValueBool: 0
-        newValueInt: 47
-        newValueFloat: 0
-        newValueString: 
-        newValueVector2: {x: 0, y: 0}
-        newValueVector3: {x: 0, y: 0, z: 0}
+        targetFieldName: isWalking
 --- !u!4 &1896191160
 Transform:
   m_ObjectHideFlags: 0

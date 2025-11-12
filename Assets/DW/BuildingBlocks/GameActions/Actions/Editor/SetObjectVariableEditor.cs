@@ -70,11 +70,9 @@ namespace DirtyWorks.GameBlocks.Editors
             }
 
             Component selectedComponent = null;
-            GameObject go = null;
 
             if (beModObj is GameObject g)
             {
-                go = g;
                 _components = g.GetComponents<Component>();
 
                 string[] componentNames = new string[_components.Length];
@@ -115,7 +113,7 @@ namespace DirtyWorks.GameBlocks.Editors
 
             // Get fields
             Type compType = selectedComponent.GetType();
-            _fields = compType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.NonPublic);
+            _fields = compType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             if (_fields.Length == 0)
             {
@@ -128,7 +126,10 @@ namespace DirtyWorks.GameBlocks.Editors
 
             string[] fieldNames = new string[_fields.Length];
             for (int i = 0; i < _fields.Length; i++)
-                fieldNames[i] = $"{_fields[i].Name} ({_fields[i].FieldType.Name})";
+            {
+                //fieldNames[i] = $"{_fields[i].Name} ({_fields[i].FieldType.Name})";
+                fieldNames[i] = _fields[i].FieldType.Name.ToString() + " " + _fields[i].Name;
+            }
 
             // Restore saved field
             if (_fieldIndex == -1 && !string.IsNullOrEmpty(targetFieldNameProp.stringValue))
@@ -145,6 +146,7 @@ namespace DirtyWorks.GameBlocks.Editors
             {
                 targetFieldNameProp.stringValue = _fields[_fieldIndex].Name;
                 var fieldType = _fields[_fieldIndex].FieldType;
+                // Draw inputfield by current data type.
                 GUIContent inputLabel = new GUIContent("Set value (" + fieldType.Name + ")");
                 EditorGUILayout.Space();
                 var inputProp =
@@ -154,10 +156,12 @@ namespace DirtyWorks.GameBlocks.Editors
                     (fieldType == typeof(string)) ? newValueStringProp :
                     (fieldType == typeof(Vector2)) ? newValueVector2Prop :
                     (fieldType == typeof(Vector3)) ? newValueVector3Prop :
-                    newValueStringProp;
+                    null;
 
-                EditorGUI.PropertyField(line, inputProp, inputLabel);
-                //line.y += lineHeight;
+                if (inputProp != null)
+                    EditorGUI.PropertyField(line, inputProp, inputLabel);
+                else
+                    EditorGUI.LabelField(line, "Not compatiable data type.");
             }
 
             EditorGUI.indentLevel = indent;

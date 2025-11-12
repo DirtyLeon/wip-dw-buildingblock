@@ -84,20 +84,25 @@ namespace DirtyWorks.GameBlocks.Variables
 
         public void AddVariable(Type _type)
         {
-            if (_type == typeof(bool))
-                variableBlocks.Add(new VariableBool());
-            else if (_type == typeof(int))
-                variableBlocks.Add(new VariableInt());
-            else if (_type == typeof(float))
-                variableBlocks.Add(new VariableFloat());
-            else if (_type == typeof(string))
-                variableBlocks.Add(new VariableString());
-            else if (_type == typeof(Vector2))
-                variableBlocks.Add(new VariableVector2());
-            else if (_type == typeof(Vector3))
-                variableBlocks.Add(new VariableVector3());
-            else
+            VariableBlock addedBlock;
+            addedBlock =
+                (_type == typeof(bool)) ? new VariableBool() :
+                (_type == typeof(int)) ? new VariableInt() :
+                (_type == typeof(float)) ? new VariableFloat() :
+                (_type == typeof(string)) ? new VariableString() :
+                (_type == typeof(Vector2)) ? new VariableVector2() :
+                (_type == typeof(Vector3)) ? new VariableVector3() :
+                null;
+
+            if(addedBlock == null)
+            {
                 Debug.LogError("Non-compatible type: " + _type);
+                return;
+            }
+            else
+            {
+                variableBlocks.Add(addedBlock);
+            }
         }
     }
 }
